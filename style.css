@@ -63,3 +63,11 @@ i {
     font-size: 8vw;
     margin-top: 15%;
 }
+
+.fas.fa-exclamation-circle {
+    margin: 20px;
+}
+
+h1 {
+    font-size: x-large;
+}
