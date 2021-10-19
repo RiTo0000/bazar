@@ -1,0 +1,45 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: fit-content;
+    display:inline-block;
+    background-color: #F5B60C;
+}
+
+li a {
+    font-family: monospace;
+    float: right;
+    margin: 1%;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: x-large;
+    border-radius: 20px;
+
+}
+
+#mainPage {
+    float: left;
+}
+/* prihlasovanie*/
+#loginForm {
+    margin: 5% auto;
+    width: 11%;
+}
+
+/*input {*/
+/*    float: right;*/
+/*}*/
+
+label {
+    font-size: large;
+}
+
+#btnLogin {
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100%);
+}
