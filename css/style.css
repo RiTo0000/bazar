@@ -23,8 +23,15 @@ label {
     transform: translate(-50%, 100%);
 }
 
+/*grid*/
+.item {
+    text-align: center;
+    border-radius: 10%;
+    /*margin: 0 30%;*/
+}
+
 i {
-    font-size: 8vw;
+    font-size: 1000%;
     margin-top: 15%;
 }
 
