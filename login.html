@@ -2,18 +2,43 @@
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Prihlásenie</title>
 </head>
 <body>
-<ul>
-    <li><a id="mainPage" href="index.html">Hlavná stránka</a></li>
-    <li><a href="login.html">Prihlásenie</a></li>
-    <li><a href="addNew.html">Pridať inzerát</a></li>
-    <li><a href="myListings.html">Moje inzeráty</a></li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Bazar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="login.html">Prihlásenie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="addNew.html">Pridať inzerát</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="myListings.html">Moje inzeráty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--<ul>-->
+<!--    <li><a id="mainPage" href="index.html">Hlavná stránka</a></li>-->
+<!--    <li><a href="login.html">Prihlásenie</a></li>-->
+<!--    <li><a href="addNew.html">Pridať inzerát</a></li>-->
+<!--    <li><a href="myListings.html">Moje inzeráty</a></li>-->
+<!--</ul>-->
 <div id="loginForm">
     <form>
         <div><label for="login">Meno:</label>
@@ -23,5 +48,9 @@
     </form>
     <button id="btnLogin">Prihlásiť</button>
 </div>
+
+
+
+<script src="js/bootstrap.js"></script>
 </body>
 </html>

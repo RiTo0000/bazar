@@ -1,0 +1,33 @@
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar {
+    background-color: #F5B60C;
+}
+
+/* prihlasovanie*/
+#loginForm {
+    margin: 5% auto;
+    width: 220px;
+}
+
+label {
+    font-size: large;
+}
+
+#btnLogin {
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100%);
+}
+
+i {
+    font-size: 8vw;
+    margin-top: 15%;
+}
+
+.fas.fa-exclamation-circle {
+    margin: 20px;
+}
