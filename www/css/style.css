@@ -8,7 +8,8 @@
 
 /* prihlasovanie*/
 #loginForm {
-    margin: 5% auto;
+    margin: 12% auto;
+
 }
 
 label {
@@ -112,5 +113,16 @@ i {
 
 #login, #password {
     max-width: 500px;
+}
+
+#btnRegister {
+    margin: auto;
+    position: absolute;
+    left: 72%;
+    transform: translate(-50%, 0);
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
 }
 

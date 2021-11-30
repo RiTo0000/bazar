@@ -31,6 +31,20 @@ if (isset($_POST["deleteUser"])) {
     }
 }
 
+if(isset($_POST["registerNewUser"])) {
+    if ($_POST["meno"] != "" && $_POST["priezvisko"] != "" && $_POST["email"] != "" && $_POST["password"] != "" && $_POST["password2"] != "") {
+        if ($_POST["password"] == $_POST["password2"]) {
+            $storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"]);
+        }
+        else {
+            echo "mas rozdielne hesla";
+        }
+    }
+    else {
+        echo "nezadal si niektore pole";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -95,48 +109,29 @@ if (isset($_POST["deleteUser"])) {
     </div>
     <div id="registrationForm" class="col">
         <div>
-            <form class="row g-3">
+            <form method="post" action="#" class="row g-3">
                 <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress2" class="form-label">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    <label for="meno" class="form-label">Meno</label>
+                    <input type="text" class="form-control" id="meno" name="meno">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputCity" class="form-label">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">State</label>
-                    <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="inputZip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
+                    <label for="priezvisko" class="form-label">Priezvisko</label>
+                    <input type="text" class="form-control" id="priezvisko" name="priezvisko">
                 </div>
                 <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
-                    </div>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com">
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <label for="password2" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password2" name="password" placeholder="zadajte heslo">
+                </div>
+                <div class="col-12">
+                    <label for="password3" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password3" name="password2" placeholder="zopakujte heslo">
+                </div>
+                <div class="col-12">
+                    <button type="submit" id="btnRegister" class="btn btn-primary" name="registerNewUser">Zaregistrovať</button>
                 </div>
             </form>
         </div>

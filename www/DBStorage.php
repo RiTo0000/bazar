@@ -62,5 +62,22 @@ class DBStorage
         $res = $this->conn->prepare($sql);
         $res->execute();
     }
+
+    public function createUser($email, $password, $name, $surname) {
+        $sql = "SELECT * FROM users where email = '".$email."'";
+
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+
+        foreach($res as $row) {
+            return false;
+        }
+
+        $sql = "INSERT INTO users VALUES('".$email."', '".$password."', '".$name."', '".$surname."')";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+    }
 }
 ?>
