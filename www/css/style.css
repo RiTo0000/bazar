@@ -9,7 +9,6 @@
 /* prihlasovanie*/
 #loginForm {
     margin: 5% auto;
-    width: 220px;
 }
 
 label {
@@ -19,8 +18,18 @@ label {
 #btnLogin {
     margin: auto;
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, 100%);
+    left: 25%;
+    transform: translate(-50%, 0);
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+#btnLogin:hover {
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
 }
 
 /*grid*/
@@ -48,4 +57,60 @@ i {
     margin-left: 50%;
     margin-top: 10px;
     transform: translate(-50%,0%);
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
 }
+
+#btnUpdateInfo:hover {
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+#btnLogout {
+    margin: 10px;
+    margin-left: 95%;
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+#btnLogout:hover {
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+#btnDeleteUser {
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translate(-50%,0%);
+
+    color: black;
+    background-color: red;
+    border-color: red;
+}
+
+#btnDeleteUser:hover {
+
+    color: black;
+    background-color: red;
+    border-color: red;
+}
+
+#loginAndRegistration {
+    width: 90%;
+    margin: auto;
+}
+#registrationForm {
+    margin: 5% auto;
+}
+
+#login, #password {
+    max-width: 500px;
+}
+

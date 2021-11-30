@@ -35,19 +35,32 @@ class DBStorage
 
     }
 
-    public function updateUserInfo($email, $password, $name, $surname) {
-        $sql = "SELECT * FROM users where email = '".$email."' AND password = '".$password."'";
+    public function updateUserInfo($origEmail, $email, $password, $name, $surname) {
+        $sql = "UPDATE users SET email = '".$email."', password = '".$password."', meno = '".$name."', priezvisko = '".$surname."' where email = '".$origEmail."'";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+        $_SESSION["name"] = $email;
+    }
+
+    public function readFromTable($email, $columName) {
+        $sql = "SELECT * FROM users where email = '".$email."'";
 
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();
 
-        foreach($res as $row) {
-            return true;
+        foreach ($res as $user) {
+            return $user[$columName];
         }
 
-        return false;
+    }
 
+    public function deleteUser($email) {
+        $sql = "DELETE FROM users where email = '".$email."'";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
     }
 }
 ?>
