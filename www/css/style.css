@@ -38,3 +38,14 @@ i {
 .fas.fa-exclamation-circle {
     margin: 20px;
 }
+
+#updateInfoForm {
+    width: 80%;
+    margin: auto;
+}
+
+#btnUpdateInfo {
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translate(-50%,0%);
+}
