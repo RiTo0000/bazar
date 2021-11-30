@@ -79,5 +79,27 @@ class DBStorage
         $res = $this->conn->prepare($sql);
         $res->execute();
     }
+
+    public function createAd($email, $title, $popis, $kategoria, $cena) {
+        $sql = "SELECT * FROM users where email = '".$email."'";
+
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+        $count = 0;
+        foreach($res as $row) {
+            $count = 1;
+        }
+
+        if ($count == 1) {
+            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "')";
+            $res = $this->conn->prepare($sql);
+            $res->execute();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 ?>

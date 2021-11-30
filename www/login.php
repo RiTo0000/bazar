@@ -89,52 +89,48 @@ if(isset($_POST["registerNewUser"])) {
 <?php if (!Auth::isLogged()) {?>
 <div id="loginAndRegistration" class="row row-cols-1 row-cols-sm-1 row-cols-md-2">
     <div id="loginForm" class="col">
-        <div>
-            <form method="post" action="#">
-                <div class="row mb-3">
-                    <label for="login" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="login" name="login">
-                    </div>
+        <form method="post" action="#">
+            <div class="row mb-3">
+                <label for="login" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="login" name="login">
                 </div>
-                <div class="row mb-3">
-                    <label for="password" class="col-sm-2 col-form-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
+            </div>
+            <div class="row mb-3">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
-                <button id="btnLogin" type="submit" class="btn btn-primary">Prihlásiť</button>
-            </form>
-        </div>
+            </div>
+            <button id="btnLogin" type="submit" class="btn btn-primary">Prihlásiť</button>
+        </form>
     </div>
     <div id="registrationForm" class="col">
-        <div>
-            <form method="post" action="#" class="row g-3">
-                <div class="col-md-6">
-                    <label for="meno" class="form-label">Meno</label>
-                    <input type="text" class="form-control" id="meno" name="meno">
-                </div>
-                <div class="col-md-6">
-                    <label for="priezvisko" class="form-label">Priezvisko</label>
-                    <input type="text" class="form-control" id="priezvisko" name="priezvisko">
-                </div>
-                <div class="col-12">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com">
-                </div>
-                <div class="col-12">
-                    <label for="password2" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password2" name="password" placeholder="zadajte heslo">
-                </div>
-                <div class="col-12">
-                    <label for="password3" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password3" name="password2" placeholder="zopakujte heslo">
-                </div>
-                <div class="col-12">
-                    <button type="submit" id="btnRegister" class="btn btn-primary" name="registerNewUser">Zaregistrovať</button>
-                </div>
-            </form>
-        </div>
+        <form method="post" action="#" class="row g-3">
+            <div class="col-md-6">
+                <label for="meno" class="form-label">Meno</label>
+                <input type="text" class="form-control" id="meno" name="meno">
+            </div>
+            <div class="col-md-6">
+                <label for="priezvisko" class="form-label">Priezvisko</label>
+                <input type="text" class="form-control" id="priezvisko" name="priezvisko">
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com">
+            </div>
+            <div class="col-12">
+                <label for="password2" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password2" name="password" placeholder="zadajte heslo">
+            </div>
+            <div class="col-12">
+                <label for="password3" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password3" name="password2" placeholder="zopakujte heslo">
+            </div>
+            <div class="col-12">
+                <button type="submit" id="btnRegister" class="btn btn-primary" name="registerNewUser">Zaregistrovať</button>
+            </div>
+        </form>
     </div>
 </div>
 <?php } else {?>

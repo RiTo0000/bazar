@@ -126,3 +126,19 @@ i {
     border-color: #F5B60C;
 }
 
+#addNewForm {
+    width: 90%;
+    margin: 5% auto;
+
+}
+
+#btnAddNewAd {
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
