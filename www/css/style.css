@@ -40,9 +40,9 @@ label {
     /*margin: 0 30%;*/
 }
 
-i {
-    font-size: 1000%;
-    margin-top: 15%;
+.menuIcon {
+    font-size: 900%;
+    margin: 15% 0;
 }
 
 .fas.fa-exclamation-circle {
@@ -141,4 +141,8 @@ i {
     color: black;
     background-color: #F5B60C;
     border-color: #F5B60C;
+}
+
+.trashAd {
+    color: red;
 }

@@ -52,59 +52,64 @@ session_start();
 <div class="container">
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-lg-3">
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-car menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-motorcycle menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-home menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-baby menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-tshirt menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
-        </div>
-
-        <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-briefcase menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-paw menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-tools menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-running menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-blender-phone menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-desktop menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-mobile-alt menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-camera menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-plug menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-guitar menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-couch menuIcon"></i></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car"></i></div>
+            <div class="item border bg-light"><i class="fas fa-gem menuIcon"></i></div>
+        </div>
+        <div class="col">
+            <div class="item border bg-light"><i class="fas fa-medkit menuIcon"></i></div>
+        </div>
+        <div class="col">
+            <div class="item border bg-light"><i class="fas fa-film menuIcon"></i></div>
+        </div>
+        <div class="col">
+            <div class="item border bg-light"><i class="fas fa-balance-scale menuIcon"></i></div>
         </div>
     </div>
 </div>

@@ -6,6 +6,13 @@ require "Auth.php";
 $storage = new DBStorage();
 session_start();
 
+if (isset($_GET["delete"])) {
+    $storage->deleteAd($_GET["delete"]);
+    header("Location: /myListings.php");
+    exit();
+}
+
+
 ?>
 
 
@@ -48,46 +55,37 @@ session_start();
         </div>
     </div>
 </nav>
-<!--<ul>-->
-<!--    <li><a id="mainPage" href="index.php">Hlavná stránka</a></li>-->
-<!--    <li><a href="login.php">Prihlásenie</a></li>-->
-<!--    <li><a href="addNew.php">Pridať inzerát</a></li>-->
-<!--    <li><a href="myListings.php">Moje inzeráty</a></li>-->
-<!--</ul>-->
 
+
+
+<?php if (!Auth::isLogged()) {?>
+<p id="noListings"><i class="fas fa-exclamation-circle"></i> Pozor nieste prihlaseny</p>
+<?php } else {?>
 <h1>Vaše inzeráty</h1>
-
-<p id="noListings"><i class="fas fa-exclamation-circle"></i> Pozor nemáte žiadne inzeráty</p>
 
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Image</th>
+        <th scope="col">Body</th>
+        <th scope="col">Cena</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
+    <?php foreach ($storage->readAllAds($_SESSION["name"]) as $row) {?>
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>Foto</td>
+        <td><div><b><?php echo $row["title"]?></b></div>
+            <div><?php echo $row["popis"]?></div></td>
+        <td><?php echo $row["cena"]?></td>
+        <td><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
+    <?php }?>
+
     </tbody>
 </table>
+<?php }?>
 
 <script src="js/bootstrap.js"></script>
 </body>

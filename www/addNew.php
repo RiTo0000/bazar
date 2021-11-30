@@ -79,6 +79,7 @@ if(isset($_POST["addNewAd"])) {
                     <option value="Hudba">Hudba</option>
                     <option value="Nabytok">Nabytok</option>
                     <option value="Oblecenie">Oblecenie</option>
+                    <option value="Sperky">Sperky</option>
                     <option value="Ostatne">Ostatne</option>
                 </select>
             </div>
@@ -92,7 +93,7 @@ if(isset($_POST["addNewAd"])) {
         <div class="row mb-3">
             <label for="popis" class="col-sm-2 col-form-label">Popis produktu</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="popis" name="popis"></textarea>
+                <textarea class="form-control" id="popis" name="popis" required="required" maxlength="480"></textarea>
             </div>
         </div>
         <div class="row mb-3">
