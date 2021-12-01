@@ -61,7 +61,7 @@ if (isset($_GET["delete"])) {
     <thead>
     <tr>
         <th scope="col">Image</th>
-        <th scope="col">Body</th>
+        <th scope="col">Produkt na predaj</th>
         <th scope="col">Cena</th>
         <th scope="col"></th>
     </tr>
@@ -69,9 +69,9 @@ if (isset($_GET["delete"])) {
     <tbody>
     <?php foreach ($storage->readAllAds("kategoria", $_SESSION["category"]) as $row) {?>
         <tr>
-            <td>Foto</td>
-            <td><div><b><?php echo $row["title"]?></b></div>
-                <div><?php echo $row["popis"]?></div></td>
+            <td><img src="<?php $row["image"]?>" width='150' height='150'></td>
+            <td class="popisInOutput"><div><b><?php echo $row["title"]?></b></div>
+                <div class="priceInOutput"><?php echo $row["popis"]?></div></td>
             <td><?php echo $row["cena"]?></td>
         </tr>
     <?php }?>

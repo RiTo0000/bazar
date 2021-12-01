@@ -6,13 +6,33 @@ require "Auth.php";
 
 $storage = new DBStorage();
 session_start();
+?>
 
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+
+    <title>Prihlásenie</title>
+</head>
+<body>
+
+<?php
 if(isset($_POST["login"])) {
     if ($storage->findUser($_POST["login"], $_POST["password"])) {
         Auth::login($_POST["login"]);
     }
     else {
-        echo "neuspesne prihlasenie";
+        ?>
+        <script>
+            showAlert("Prihlásenie používateľa sa nepodarilo, zadali ste nesprávne prihlasovacie údaje");
+            notValidForm();
+        </script>
+        <?php
     }
 }
 
@@ -31,33 +51,8 @@ if (isset($_POST["deleteUser"])) {
     }
 }
 
-if(isset($_POST["registerNewUser"])) {
-    if ($_POST["meno"] != "" && $_POST["priezvisko"] != "" && $_POST["email"] != "" && $_POST["password"] != "" && $_POST["password2"] != "") {
-        if ($_POST["password"] == $_POST["password2"]) {
-            $storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"]);
-        }
-        else {
-            echo "mas rozdielne hesla";
-        }
-    }
-    else {
-        echo "nezadal si niektore pole";
-    }
-}
-
 ?>
 
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <title>Prihlásenie</title>
-</head>
-<body>
 <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Bazar</a>
@@ -109,23 +104,23 @@ if(isset($_POST["registerNewUser"])) {
         <form method="post" action="#" class="row g-3">
             <div class="col-md-6">
                 <label for="meno" class="form-label">Meno</label>
-                <input type="text" class="form-control" id="meno" name="meno">
+                <input type="text" class="form-control" id="meno" required="required" name="meno">
             </div>
             <div class="col-md-6">
                 <label for="priezvisko" class="form-label">Priezvisko</label>
-                <input type="text" class="form-control" id="priezvisko" name="priezvisko">
+                <input type="text" class="form-control" id="priezvisko" required="required" name="priezvisko">
             </div>
             <div class="col-12">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com">
+                <input type="email" class="form-control" id="email" name="email" required="required" placeholder="example@gmail.com">
             </div>
             <div class="col-12">
                 <label for="password2" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password2" name="password" placeholder="zadajte heslo">
+                <input type="password" class="form-control" id="password2" name="password" required="required" placeholder="zadajte heslo">
             </div>
             <div class="col-12">
                 <label for="password3" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password3" name="password2" placeholder="zopakujte heslo">
+                <input type="password" class="form-control" id="password3" name="password2" required="required" placeholder="zopakujte heslo">
             </div>
             <div class="col-12">
                 <button type="submit" id="btnRegister" class="btn btn-primary" name="registerNewUser">Zaregistrovať</button>
@@ -171,6 +166,36 @@ if(isset($_POST["registerNewUser"])) {
 </form>
 <?php }?>
 
+<?php
+if(isset($_POST["registerNewUser"])) {
+    if ($_POST["password"] == $_POST["password2"]) {
+    if (!$storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"])) {
+        ?>
+        <script>
+            showAlert("Registrácia nového používateľa sa nepodarila, konto so zadaným emailom už existuje skúste sa prihlásiť");
+            notValidForm();
+        </script>
+    <?php
+    }
+    else {
+    ?>
+        <script>
+            showAlert("Registrácia nového používateľa sa podarila");
+        </script>
+    <?php
+    }
+    }
+    else {
+    ?>
+        <script>
+
+            showAlert("Registrácia nového používateľa sa nepodarila, vaše heslá sa nezhodujú");
+            notValidForm();
+        </script>
+        <?php
+    }
+}
+?>
 
 <script src="js/bootstrap.js"></script>
 </body>

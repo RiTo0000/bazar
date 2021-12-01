@@ -59,7 +59,11 @@ if (isset($_GET["delete"])) {
 
 
 <?php if (!Auth::isLogged()) {?>
-<p id="noListings"><i class="fas fa-exclamation-circle"></i> Pozor nieste prihlaseny</p>
+<div id="noListings">
+    <h1><i class="fas fa-exclamation-circle"></i> Pozor nie ste prihláseny</h1>
+    <p>Pre zobrazenie vašich inzerátov sa najprv prosím prihláste</p>
+</div>
+
 <?php } else {?>
 <h1>Vaše inzeráty</h1>
 
@@ -67,7 +71,7 @@ if (isset($_GET["delete"])) {
     <thead>
     <tr>
         <th scope="col">Image</th>
-        <th scope="col">Body</th>
+        <th scope="col">Produkt na predaj</th>
         <th scope="col">Cena</th>
         <th scope="col"></th>
     </tr>
@@ -75,11 +79,11 @@ if (isset($_GET["delete"])) {
     <tbody>
     <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
     <tr>
-        <td>Foto</td>
-        <td><div><b><?php echo $row["title"]?></b></div>
+        <td><img src="<?php $row["image"]?>" width='150' height='150'></td>
+        <td class="popisInOutput"><div><b><?php echo $row["title"]?></b></div>
             <div><?php echo $row["popis"]?></div></td>
-        <td><?php echo $row["cena"]?></td>
-        <td><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
+        <td class="priceInOutput"><?php echo $row["cena"]?></td>
+        <td class="trashInOutput"><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
     </tr>
     <?php }?>
 

@@ -1,23 +1,12 @@
 <?php
 
+
 require "DBStorage.php";
 require "Auth.php";
 
 $storage = new DBStorage();
 session_start();
-
-if(isset($_POST["addNewAd"])) {
-    if ($_POST["kategoria"] != "" && $_POST["nadpis"] != "" && $_POST["popis"] != "" && $_POST["cena"] != "" && $_POST["email"] != "") {
-        if (!$storage->createAd($_POST["email"], $_POST["nadpis"], $_POST["popis"], $_POST["kategoria"], $_POST["cena"]))
-            echo "uzivatel zo zadanym mailom neexistuje";
-    }
-    else {
-        echo "nezadal si niektore pole";
-    }
-}
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="sk">
@@ -27,6 +16,8 @@ if(isset($_POST["addNewAd"])) {
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/1c912cc3b2.js" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
 
     <title>Nový inzerát</title>
 </head>
@@ -60,7 +51,7 @@ if(isset($_POST["addNewAd"])) {
 </nav>
 
 <div id="addNewForm">
-    <form method="post" action="#">
+    <form id="addListingForm" method="post">
         <div class="row mb-3">
             <label for="kategoria" class="col-sm-2 col-form-label">Kategória</label>
             <div class="col-sm-10">
@@ -91,31 +82,55 @@ if(isset($_POST["addNewAd"])) {
         <div class="row mb-3">
             <label for="nadpis" class="col-sm-2 col-form-label">Nadpis</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="nadpis" name="nadpis">
+                <input type="text" class="form-control" id="nadpis" name="nadpis" required="required">
             </div>
         </div>
         <div class="row mb-3">
             <label for="popis" class="col-sm-2 col-form-label">Popis produktu</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="popis" name="popis" required="required" maxlength="480"></textarea>
+                <textarea class="form-control" id="popis" name="popis" required="required" maxlength="500"></textarea>
             </div>
         </div>
         <div class="row mb-3">
             <label for="cena" class="col-sm-2 col-form-label">Cena (€)</label>
             <div class="col-sm-10">
-                <input type="number" min="0" step="0.01" class="form-control" id="cena" name="cena">
+                <input type="number" min="0" step="0.01" class="form-control" id="cena" name="cena" required="required">
             </div>
         </div>
         <div class="row mb-3">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" required="required">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="image" class="col-sm-2 col-form-label">nahraj foto</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control" id="image" name="image" value="">
             </div>
         </div>
         <button type="submit" id="btnAddNewAd" class="btn btn-primary" name="addNewAd">Pridať inzerát</button>
     </form>
 </div>
 
-<script src="js/bootstrap.js"></script>
+<?php
+if(isset($_POST["addNewAd"])) {
+    if (!$storage->createAd($_POST["email"], $_POST["nadpis"], $_POST["popis"], $_POST["kategoria"], $_POST["cena"])) {
+        ?>
+        <script>
+            showAlert("Uzivatel so zadanou emailovou adresou neexistuje");
+            notValidForm();
+        </script>
+        <?php
+    } else {
+        ?>
+        <script>
+            showAlert("Pridanie inzeratu prebehlo uspesne");
+        </script>
+        <?php
+    }
+}
+?>
+
 </body>
 </html>

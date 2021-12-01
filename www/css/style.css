@@ -147,3 +147,24 @@ label {
 .trashAd {
     color: red;
 }
+
+table {
+    width: 100%;
+}
+
+.popisInOutput {
+    width: 80%;
+    vertical-align: top;
+}
+
+.priceInOutput {
+    width: 5%;
+}
+
+.trashInOutput {
+    width: fit-content;
+}
+
+#noListings {
+
+}

@@ -99,7 +99,7 @@ class DBStorage
         }
 
         if ($count == 1) {
-            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "')";
+            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "' , null)";
             $res = $this->conn->prepare($sql);
             $res->execute();
             return true;
