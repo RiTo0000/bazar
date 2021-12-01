@@ -5,14 +5,6 @@ require "Auth.php";
 
 $storage = new DBStorage();
 session_start();
-
-if (isset($_GET["delete"])) {
-    $storage->deleteAd($_GET["delete"]);
-    header("Location: /myListings.php");
-    exit();
-}
-
-
 ?>
 
 
@@ -62,8 +54,7 @@ if (isset($_GET["delete"])) {
     <tr>
         <th scope="col">Image</th>
         <th scope="col">Produkt na predaj</th>
-        <th scope="col">Cena</th>
-        <th scope="col"></th>
+        <th scope="col">Cena (€)</th>
     </tr>
     </thead>
     <tbody>
@@ -71,8 +62,8 @@ if (isset($_GET["delete"])) {
         <tr>
             <td><img src="<?php $row["image"]?>" width='150' height='150'></td>
             <td class="popisInOutput"><div><b><?php echo $row["title"]?></b></div>
-                <div class="priceInOutput"><?php echo $row["popis"]?></div></td>
-            <td><?php echo $row["cena"]?></td>
+                <div><?php echo $row["popis"]?></div></td>
+            <td class="priceInOutput"><?php echo $row["cena"]?></td>
         </tr>
     <?php }?>
 

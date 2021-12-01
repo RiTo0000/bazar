@@ -72,7 +72,7 @@ if (isset($_GET["delete"])) {
     <tr>
         <th scope="col">Image</th>
         <th scope="col">Produkt na predaj</th>
-        <th scope="col">Cena</th>
+        <th scope="col">Cena (€)</th>
         <th scope="col"></th>
     </tr>
     </thead>
