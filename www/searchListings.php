@@ -25,7 +25,7 @@ if (isset($_GET["delete"])) {
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/1c912cc3b2.js" crossorigin="anonymous"></script>
 
-    <title>Moje inzeráty</title>
+    <title><?php echo $_SESSION["category"]?> inzeraty</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light ">
@@ -40,7 +40,7 @@ if (isset($_GET["delete"])) {
                     <a class="nav-link" href="addNew.php">Pridať inzerát</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="myListings.php">Moje inzeráty</a>
+                    <a class="nav-link" href="myListings.php">Moje inzeráty</a>
                 </li>
                 <?php  if (Auth::isLogged()) { ?>
                     <li class="nav-item">
@@ -57,12 +57,6 @@ if (isset($_GET["delete"])) {
 </nav>
 
 
-
-<?php if (!Auth::isLogged()) {?>
-<p id="noListings"><i class="fas fa-exclamation-circle"></i> Pozor nieste prihlaseny</p>
-<?php } else {?>
-<h1>Vaše inzeráty</h1>
-
 <table class="table">
     <thead>
     <tr>
@@ -73,19 +67,17 @@ if (isset($_GET["delete"])) {
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
-    <tr>
-        <td>Foto</td>
-        <td><div><b><?php echo $row["title"]?></b></div>
-            <div><?php echo $row["popis"]?></div></td>
-        <td><?php echo $row["cena"]?></td>
-        <td><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
-    </tr>
+    <?php foreach ($storage->readAllAds("kategoria", $_SESSION["category"]) as $row) {?>
+        <tr>
+            <td>Foto</td>
+            <td><div><b><?php echo $row["title"]?></b></div>
+                <div><?php echo $row["popis"]?></div></td>
+            <td><?php echo $row["cena"]?></td>
+        </tr>
     <?php }?>
 
     </tbody>
 </table>
-<?php }?>
 
 <script src="js/bootstrap.js"></script>
 </body>

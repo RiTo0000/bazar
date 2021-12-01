@@ -109,9 +109,8 @@ class DBStorage
         }
     }
 
-    public function readAllAds($email) {
-        $sql = "SELECT * FROM inzeraty where userEmail = '".$email."'";
-
+    public function readAllAds($colName, $colValue) {
+$sql = "SELECT * FROM inzeraty where $colName = '".$colValue."'";
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();

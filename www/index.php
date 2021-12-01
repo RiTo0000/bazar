@@ -6,6 +6,12 @@ require "Auth.php";
 $storage = new DBStorage();
 session_start();
 
+if (isset($_GET["category"])) {
+    $_SESSION["category"] = $_GET["category"];
+    header("Location: /searchListings.php");
+    exit();
+}
+
 ?>
 
 
@@ -52,64 +58,64 @@ session_start();
 <div class="container">
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-lg-3">
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-car menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Auto"><i class="fas fa-car menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-motorcycle menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Motorky"><i class="fas fa-motorcycle menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-home menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Reality"><i class="fas fa-home menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-baby menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Deti"><i class="fas fa-baby menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-tshirt menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Oblecenie"><i class="fas fa-tshirt menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-briefcase menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Praca"><i class="fas fa-briefcase menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-paw menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Zvierata"><i class="fas fa-paw menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-tools menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Stroje"><i class="fas fa-tools menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-running menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Sport"><i class="fas fa-running menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-blender-phone menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Knihy"><i class="fas fa-book menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-desktop menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=PC"><i class="fas fa-desktop menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-mobile-alt menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Mobily"><i class="fas fa-mobile-alt menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-camera menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Foto"><i class="fas fa-camera menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-plug menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Elektro"><i class="fas fa-plug menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-guitar menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Hudba"><i class="fas fa-guitar menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-couch menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Nabytok"><i class="fas fa-couch menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-gem menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Sperky"><i class="fas fa-gem menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-medkit menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Zdravie"><i class="fas fa-medkit menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-film menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Zabava"><i class="fas fa-film menuIcon"></i></a></div>
         </div>
         <div class="col">
-            <div class="item border bg-light"><i class="fas fa-balance-scale menuIcon"></i></div>
+            <div class="item border bg-light"><a href="?category=Ostatne"><i class="fas fa-balance-scale menuIcon"></i></a></div>
         </div>
     </div>
 </div>

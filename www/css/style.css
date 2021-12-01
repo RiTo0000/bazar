@@ -43,6 +43,7 @@ label {
 .menuIcon {
     font-size: 900%;
     margin: 15% 0;
+    color: black;
 }
 
 .fas.fa-exclamation-circle {

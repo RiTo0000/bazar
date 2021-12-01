@@ -66,20 +66,24 @@ if(isset($_POST["addNewAd"])) {
             <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example" id="kategoria" name="kategoria" >
                     <option value="Auto">Auto</option>
+                    <option value="Motorky">Motorky</option>
                     <option value="Reality">Reality</option>
+                    <option value="Deti">Deti</option>
+                    <option value="Oblecenie">Oblecenie</option>
                     <option value="Praca">Praca</option>
                     <option value="Zvierata">Zvierata</option>
                     <option value="Stroje">Stroje</option>
-                    <option value="Zahrada">Zahrada</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Knihy">Knihy</option>
                     <option value="PC">PC</option>
                     <option value="Mobily">Mobily</option>
                     <option value="Foto">Foto</option>
                     <option value="Elektro">Elektro</option>
-                    <option value="Sport">Sport</option>
                     <option value="Hudba">Hudba</option>
                     <option value="Nabytok">Nabytok</option>
-                    <option value="Oblecenie">Oblecenie</option>
                     <option value="Sperky">Sperky</option>
+                    <option value="Zdravie">Zdravie</option>
+                    <option value="Zabava">Zabava</option>
                     <option value="Ostatne">Ostatne</option>
                 </select>
             </div>
