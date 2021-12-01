@@ -26,14 +26,6 @@ if(isset($_POST["login"])) {
     if ($storage->findUser($_POST["login"], $_POST["password"])) {
         Auth::login($_POST["login"]);
     }
-    else {
-        ?>
-        <script>
-            showAlert("Prihlásenie používateľa sa nepodarilo, zadali ste nesprávne prihlasovacie údaje");
-            notValidForm();
-        </script>
-        <?php
-    }
 }
 
 if(isset($_POST["logout"])) {
@@ -88,13 +80,13 @@ if (isset($_POST["deleteUser"])) {
             <div class="row mb-3">
                 <label for="login" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="login" name="login">
+                    <input type="email" class="form-control" id="login" required="required" name="login">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" required="required" name="password">
                 </div>
             </div>
             <button id="btnLogin" type="submit" class="btn btn-primary">Prihlásiť</button>
@@ -138,25 +130,25 @@ if (isset($_POST["deleteUser"])) {
     <div class="row mb-3">
         <label for="inputName" class="col-sm-2 col-form-label">Meno</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" name="meno" value="<?php echo $storage->readFromTable($_SESSION["name"], "meno")?>">
+            <input type="text" class="form-control" id="inputName" name="meno" required="required" value="<?php echo $storage->readFromTable($_SESSION["name"], "meno")?>">
         </div>
     </div>
     <div class="row mb-3">
         <label for="inputSurname" class="col-sm-2 col-form-label">Priezvisko</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputSurname" name="priezvisko" value="<?php echo $storage->readFromTable($_SESSION["name"], "priezvisko")?>">
+            <input type="text" class="form-control" id="inputSurname" name="priezvisko" required="required" value="<?php echo $storage->readFromTable($_SESSION["name"], "priezvisko")?>">
         </div>
     </div>
     <div class="row mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" name="email" value="<?php echo $storage->readFromTable($_SESSION["name"], "email")?>">
+            <input type="email" class="form-control" id="inputEmail3" name="email" required="required" value="<?php echo $storage->readFromTable($_SESSION["name"], "email")?>">
         </div>
     </div>
     <div class="row mb-3">
         <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" name="password" value="<?php echo $storage->readFromTable($_SESSION["name"], "password")?>">
+            <input type="password" class="form-control" id="inputPassword3" name="password" required="required" value="<?php echo $storage->readFromTable($_SESSION["name"], "password")?>">
         </div>
     </div>
     <button type="submit" id="btnUpdateInfo" class="btn btn-primary" name="updateUserInfo">Aktualizovat</button>
@@ -167,6 +159,17 @@ if (isset($_POST["deleteUser"])) {
 <?php }?>
 
 <?php
+if(isset($_POST["login"])) {
+    if (!$storage->findUser($_POST["login"], $_POST["password"])) {
+        ?>
+        <script>
+            showAlert("Prihlásenie používateľa sa nepodarilo, zadali ste nesprávne prihlasovacie údaje");
+            notValidForm();
+        </script>
+        <?php
+    }
+}
+
 if(isset($_POST["registerNewUser"])) {
     if ($_POST["password"] == $_POST["password2"]) {
     if (!$storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"])) {
