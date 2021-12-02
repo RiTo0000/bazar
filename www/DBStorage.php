@@ -65,7 +65,7 @@ class DBStorage
         $res = $this->conn->prepare($sql);
         $res->execute();
 
-        foreach ($this->readAllAds($email) as $row) {
+        foreach ($this->readAllAds("userEmail", $email) as $row) {
             $this->deleteAd($row["id"]);
         }
     }

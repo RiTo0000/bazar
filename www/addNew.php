@@ -51,7 +51,7 @@ session_start();
 </nav>
 
 <div id="addNewForm">
-    <form id="addListingForm" method="post">
+    <form onsubmit="return chechk();" id="addListingForm" method="post">
         <div class="row mb-3">
             <label for="kategoria" class="col-sm-2 col-form-label">Kategória</label>
             <div class="col-sm-10">

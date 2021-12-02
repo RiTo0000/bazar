@@ -160,7 +160,7 @@ if (isset($_POST["deleteUser"])) {
 
 <?php
 if(isset($_POST["login"])) {
-    if (!$storage->findUser($_POST["login"], $_POST["password"])) {
+    if (!$storage->findUser($_POST["login"], $_POST["password"])) { //toto vypise pri kazdom tvoreni uzivatela lebo ho vytvori hore
         ?>
         <script>
             showAlert("Prihlásenie používateľa sa nepodarilo, zadali ste nesprávne prihlasovacie údaje");
