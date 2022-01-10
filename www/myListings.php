@@ -80,7 +80,7 @@ if (isset($_GET["delete"])) {
     <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
     <tr>
         <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
-        <td class="popisInOutput"><div><b><?php echo $row["title"]?></b></div>
+        <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $storage->readImage($row["id"]);?>')"><?php echo $row["title"]?></a></b></div>
             <div><?php echo $row["popis"]?></div></td>
         <td class="priceInOutput"><?php echo $row["cena"]?></td>
         <td class="trashInOutput"><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
@@ -89,8 +89,24 @@ if (isset($_GET["delete"])) {
 
     </tbody>
 </table>
+<div class="model" id="model">
+
+    <div class="model-header">
+        <div class="title" id="title"></div>
+        <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="model-body">
+        <b><div id="kategoria"></div></b>
+        <div ><img id="image" src="" width='100%'></div>
+        <div id="popis"></div>
+        <div id="price"></div>
+        <div id="usrEmail"></div>
+    </div>
+</div>
+<div id="overlay"></div>
 <?php }?>
 
 <script src="js/bootstrap.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
