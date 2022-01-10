@@ -79,7 +79,7 @@ if (isset($_GET["delete"])) {
     <tbody>
     <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
     <tr>
-        <td><img src="<?php $row["image"]?>" width='150' height='150'></td>
+        <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
         <td class="popisInOutput"><div><b><?php echo $row["title"]?></b></div>
             <div><?php echo $row["popis"]?></div></td>
         <td class="priceInOutput"><?php echo $row["cena"]?></td>

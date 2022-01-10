@@ -110,7 +110,7 @@ class DBStorage
     }
 
     public function readAllAds($colName, $colValue) {
-$sql = "SELECT * FROM inzeraty where $colName = '".$colValue."'";
+        $sql = "SELECT * FROM inzeraty where $colName = '".$colValue."'";
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();
@@ -131,6 +131,29 @@ $sql = "SELECT * FROM inzeraty where $colName = '".$colValue."'";
         $res = $this->conn->prepare($sql);
         $res->execute();
 
+    }
+
+    public function insertImage($fname, $path) {
+        $sql = "SELECT LAST_INSERT_ID()";
+        $res = $this->conn->prepare($sql);
+        $inzeratId = $res->execute();
+        echo $inzeratId;
+        $sql = "INSERT INTO images VALUES(NULL, (SELECT MAX(id) FROM inzeraty),'".$path."', '".$fname."')";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+    }
+
+    public function readImage($inzeratId) {
+        $sql = "SELECT * FROM images where inzerat_id = '".$inzeratId."'";
+
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+
+        foreach ($res as $img) {
+            return $img["imgPath"];
+        }
     }
 }
 ?>
