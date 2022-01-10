@@ -137,7 +137,7 @@ if(isset($_POST["addNewAd"])) {
         move_uploaded_file($_FILES["image"]["tmp_name"],$dst);  // move image into the {all_images} folder with 32 characters hex number and image name
 
         //$check = mysqli_query($db,"insert into tbltest(fname,images) values('$_POST[fname]','$dst_db')");  // executing insert query
-        $check = $storage->insertImage('$_POST[fname]', $dst_db);  // executing insert query
+        $check = $storage->insertImage($dst_db);  // executing insert query
         //koniec kopcenia
         ?>
         <script>

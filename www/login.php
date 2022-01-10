@@ -172,21 +172,21 @@ if(isset($_POST["login"])) {
 
 if(isset($_POST["registerNewUser"])) {
     if ($_POST["password"] == $_POST["password2"]) {
-    if (!$storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"])) {
+        if (!$storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"])) {
+            ?>
+            <script>
+                showAlert("Registrácia nového používateľa sa nepodarila, konto so zadaným emailom už existuje skúste sa prihlásiť");
+                notValidForm();
+            </script>
+        <?php
+        }
+        else {
         ?>
-        <script>
-            showAlert("Registrácia nového používateľa sa nepodarila, konto so zadaným emailom už existuje skúste sa prihlásiť");
-            notValidForm();
-        </script>
-    <?php
-    }
-    else {
-    ?>
-        <script>
-            showAlert("Registrácia nového používateľa sa podarila");
-        </script>
-    <?php
-    }
+            <script>
+                showAlert("Registrácia nového používateľa sa podarila");
+            </script>
+        <?php
+        }
     }
     else {
     ?>

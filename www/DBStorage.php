@@ -85,6 +85,7 @@ class DBStorage
 
         $res = $this->conn->prepare($sql);
         $res->execute();
+        return true;
     }
 
     public function createAd($email, $title, $popis, $kategoria, $cena) {
@@ -99,7 +100,7 @@ class DBStorage
         }
 
         if ($count == 1) {
-            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "' , null)";
+            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "')";
             $res = $this->conn->prepare($sql);
             $res->execute();
             return true;
@@ -143,12 +144,8 @@ class DBStorage
 
     }
 
-    public function insertImage($fname, $path) {
-        $sql = "SELECT LAST_INSERT_ID()";
-        $res = $this->conn->prepare($sql);
-        $inzeratId = $res->execute();
-        echo $inzeratId;
-        $sql = "INSERT INTO images VALUES(NULL, (SELECT MAX(id) FROM inzeraty),'".$path."', '".$fname."')";
+    public function insertImage($path) {
+        $sql = "INSERT INTO images VALUES(NULL, (SELECT MAX(id) FROM inzeraty),'".$path."')";
 
         $res = $this->conn->prepare($sql);
         $res->execute();
