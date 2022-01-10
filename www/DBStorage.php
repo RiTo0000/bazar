@@ -163,6 +163,16 @@ class DBStorage
         }
     }
 
+    public function readAllImages($inzeratId) {
+        $sql = "SELECT * FROM images where inzerat_id = '".$inzeratId."'";
+
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+
+        return $res;
+    }
+
     public function deleteImages($inzeratId) {
         $sql = "SELECT * FROM images where inzerat_id = '".$inzeratId."'";
 

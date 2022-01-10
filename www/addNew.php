@@ -104,9 +104,9 @@ session_start();
             </div>
         </div>
         <div class="row mb-3">
-            <label for="image" class="col-sm-2 col-form-label">Nahraj foto</label>
+            <label for="image" class="col-sm-2 col-form-label">Nahraj fotky (max. 5ks)</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="image" name="image" value="">
+                <input type="file" class="form-control" id="image" name="image[]" value="" multiple>
             </div>
         </div>
         <button type="submit" id="btnAddNewAd" class="btn btn-primary" name="addNewAd">Pridať inzerát</button>
@@ -115,36 +115,67 @@ session_start();
 
 <?php
 if(isset($_POST["addNewAd"])) {
-    if (!$storage->createAd($_POST["email"], $_POST["nadpis"], $_POST["popis"], $_POST["kategoria"], $_POST["cena"])) {
+    $myFile = $_FILES['image'];
+    if (count($myFile["name"]) > 5) {
         ?>
         <script>
-            showAlert("Uzivatel so zadanou emailovou adresou neexistuje");
+            showAlert("Pozor mozes nahrat max 5 obrazkov");
             notValidForm();
         </script>
         <?php
-    } else {
-        //zaciatok kopcenia
-        $var1 = rand(1111,9999);  // generate random number in $var1 variable
-        $var2 = rand(1111,9999);  // generate random number in $var2 variable
+    }
+    else {
+        if (!$storage->createAd($_POST["email"], $_POST["nadpis"], $_POST["popis"], $_POST["kategoria"], $_POST["cena"])) {
+            ?>
+            <script>
+                showAlert("Uzivatel so zadanou emailovou adresou neexistuje");
+                notValidForm();
+            </script>
+            <?php
+        } else {
+            //zaciatok kopcenia
+            /*$var1 = rand(1111,9999);  // generate random number in $var1 variable
+            $var2 = rand(1111,9999);  // generate random number in $var2 variable
 
-        $var3 = $var1.$var2;  // concatenate $var1 and $var2 in $var3
-        $var3 = md5($var3);   // convert $var3 using md5 function and generate 32 characters hex number
+            $var3 = $var1.$var2;  // concatenate $var1 and $var2 in $var3
+            $var3 = md5($var3);   // convert $var3 using md5 function and generate 32 characters hex number*/
 
-        if(file_exists($_FILES["image"]["tmp_name"]) || is_uploaded_file($_FILES["image"]["tmp_name"])) { //vykona sa iba ak uzivatel zadal subor
-            $fnm = $_FILES["image"]["name"];    // get the image name in $fnm variable
-            $dst = "./images/".$var3.$fnm;  // storing image path into the {all_images} folder with 32 characters hex number and file name
-            $dst_db = "images/".$var3.$fnm; // storing image path into the database with 32 characters hex number and file name
+            if (isset($_FILES['image'])) {
+                $fileCount = count($myFile["name"]);
 
-            move_uploaded_file($_FILES["image"]["tmp_name"],$dst);  // move image into the {all_images} folder with 32 characters hex number and image name
+                for ($i = 0; $i < $fileCount; $i++) {
+                    $var1 = rand(1111,9999);  // generate random number in $var1 variable
+                    $var2 = rand(1111,9999);  // generate random number in $var2 variable
 
-            $check = $storage->insertImage($dst_db);  // executing insert query
+                    $var3 = $var1.$var2;  // concatenate $var1 and $var2 in $var3
+                    $var3 = md5($var3);   // convert $var3 using md5 function and generate 32 characters hex number
+
+                    $fnm = $myFile["name"][$i];    // get the image name in $fnm variable
+                    $dst = "./images/".$var3.$fnm;  // storing image path into the {all_images} folder with 32 characters hex number and file name
+                    $dst_db = "images/".$var3.$fnm; // storing image path into the database with 32 characters hex number and file name
+
+                    move_uploaded_file($myFile["tmp_name"][$i],$dst);  // move image into the {all_images} folder with 32 characters hex number and image name
+
+                    $check = $storage->insertImage($dst_db);  // executing insert query
+                }
+            }
+
+            /*if(file_exists($_FILES["image"]["tmp_name"]) || is_uploaded_file($_FILES["image"]["tmp_name"])) { //vykona sa iba ak uzivatel zadal subor
+                $fnm = $_FILES["image"]["name"];    // get the image name in $fnm variable
+                $dst = "./images/".$var3.$fnm;  // storing image path into the {all_images} folder with 32 characters hex number and file name
+                $dst_db = "images/".$var3.$fnm; // storing image path into the database with 32 characters hex number and file name
+
+                move_uploaded_file($_FILES["image"]["tmp_name"],$dst);  // move image into the {all_images} folder with 32 characters hex number and image name
+
+                $check = $storage->insertImage($dst_db);  // executing insert query
+            }*/
+            //koniec kopcenia
+            ?>
+            <script>
+                showAlert("Pridanie inzeratu prebehlo uspesne");
+            </script>
+            <?php
         }
-        //koniec kopcenia
-        ?>
-        <script>
-            showAlert("Pridanie inzeratu prebehlo uspesne");
-        </script>
-        <?php
     }
 }
 ?>

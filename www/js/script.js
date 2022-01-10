@@ -44,17 +44,25 @@ function closeModal(modal) {
 }
 
 
-function setModal(title, category, popis, userEmail, price, image) {
+function setModal(title, category, popis, userEmail, price, numImages, image1, image2, image3, image4, image5) {
+
     document.getElementById("title").innerHTML = title;
     document.getElementById("kategoria").innerHTML = category;
-    if (image.localeCompare("") == 0) {
-        document.getElementById("image").style.display = "none";
+    if (numImages > 4) {
+        document.getElementById("image5").src = image5;
     }
-    else {
-        document.getElementById("image").style.display = "block";
-        document.getElementById("image").src = image;
+    if (numImages > 3) {
+        document.getElementById("image4").src = image4;
     }
-    document.getElementById("image").src = image;
+    if (numImages > 2) {
+        document.getElementById("image3").src = image3;
+    }
+    if (numImages > 1) {
+        document.getElementById("image2").src = image2;
+    }
+    if (numImages > 0) {
+        document.getElementById("image1").src = image1;
+    }
     document.getElementById("popis").innerHTML = popis;
     document.getElementById("usrEmail").innerHTML = userEmail;
     document.getElementById("usrEmail").href = "mailto:" + userEmail;
@@ -68,3 +76,34 @@ function edit(id, title, popis, price) {
     document.getElementById("cenaUpdate").setAttribute('value', parseFloat(price));
 }
 
+//obrazkova galeria
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    var captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    captionText.innerHTML = dots[slideIndex-1].alt;
+}
