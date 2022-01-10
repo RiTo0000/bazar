@@ -119,10 +119,20 @@ class DBStorage
     }
 
     public function deleteAd($id) {
+        $sql = "SELECT * FROM inzeraty where id = '".$id."'";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+
+        foreach ($res as $img) {
+            $this->deleteImages($img["id"]);
+        }
+
         $sql = "DELETE FROM inzeraty where id = '".$id."'";
 
         $res = $this->conn->prepare($sql);
         $res->execute();
+
     }
 
     public function updateAd($id, $email) {
@@ -154,6 +164,23 @@ class DBStorage
         foreach ($res as $img) {
             return $img["imgPath"];
         }
+    }
+
+    public function deleteImages($inzeratId) {
+        $sql = "SELECT * FROM images where inzerat_id = '".$inzeratId."'";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+
+        foreach ($res as $img) {
+            unlink($img["imgPath"]);
+        }
+
+        $sql = "DELETE FROM images where inzerat_id = '".$inzeratId."'";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+
     }
 }
 ?>
