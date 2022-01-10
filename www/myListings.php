@@ -12,8 +12,24 @@ if (isset($_GET["delete"])) {
     exit();
 }
 
-
+if(isset($_POST["updateAd"])) {
+    if (!$storage->updateAd($_POST["idUpdate"], $_POST["nadpisUpdate"], $_POST["popisUpdate"], $_POST["cenaUpdate"])) {
+        ?>
+        <script>
+            showAlert("Pri uprave sa nieco pokazilo");
+            notValidForm();
+        </script>
+        <?php
+    } else {
+        ?>
+        <script>
+            showAlert("Upravenie inzeratu prebehlo uspesne");
+        </script>
+        <?php
+    }
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -72,7 +88,8 @@ if (isset($_GET["delete"])) {
     <tr>
         <th scope="col">Image</th>
         <th scope="col">Produkt na predaj</th>
-        <th scope="col">Cena (€)</th>
+        <th scope="col">Cena</th>
+        <th scope="col"></th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -82,7 +99,8 @@ if (isset($_GET["delete"])) {
         <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
         <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $storage->readImage($row["id"]);?>')"><?php echo $row["title"]?></a></b></div>
             <div><?php echo $row["popis"]?></div></td>
-        <td class="priceInOutput"><?php echo $row["cena"]?></td>
+        <td class="priceInOutput"><?php echo $row["cena"]?> €</td>
+        <td class="trashInOutput"><a data-modal-target="#model2" onclick="edit('<?php echo $row["id"]?>', '<?php echo $row["title"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["cena"]?>')"><i class="fas fa-edit"></i></a></td>
         <td class="trashInOutput"><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
     </tr>
     <?php }?>
@@ -90,17 +108,56 @@ if (isset($_GET["delete"])) {
     </tbody>
 </table>
 <div class="model" id="model">
-
     <div class="model-header">
         <div class="title" id="title"></div>
         <button data-close-button class="close-button">&times;</button>
     </div>
     <div class="model-body">
         <b><div id="kategoria"></div></b>
-        <div ><img id="image" src="" width='100%'></div>
+        <div><img id="image" src="" width='100%'></div>
+        <br>
         <div id="popis"></div>
+        <br>
         <div id="price"></div>
-        <div id="usrEmail"></div>
+        <div>Kontaktný email: <a id="usrEmail" href=""></a></div>
+    </div>
+</div>
+<!--zaciatok upravy-->
+<div class="model" id="model2">
+    <div class="model-header">
+        <div class="title" id="titleUpdate"></div>
+        <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="model-body">
+        <div id="updateAdForm">
+            <form onsubmit="return chechk();" enctype="multipart/form-data" id="addListingForm" method="post">
+                <div class="row mb-3 display-none">
+                    <label for="idUpdate" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="idUpdate" name="idUpdate" required="required">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="nadpis" class="col-sm-2 col-form-label">Nadpis</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nadpisUpdate" name="nadpisUpdate" required="required">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="popis" class="col-sm-2 col-form-label">Popis produktu</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="popisUpdate" name="popisUpdate" required="required" maxlength="500"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="cena" class="col-sm-2 col-form-label">Cena (€)</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" step="0.01" class="form-control" id="cenaUpdate" name="cenaUpdate" required="required">
+                    </div>
+                </div>
+                <button type="submit" id="btnUpdateAd" class="btn btn-primary" name="updateAd">Upraviť inzerát</button>
+            </form>
+        </div>
     </div>
 </div>
 <div id="overlay"></div>

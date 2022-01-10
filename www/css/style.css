@@ -165,10 +165,6 @@ table {
     width: fit-content;
 }
 
-#noListings {
-
-}
-
 /*modal*/
 .model {
     position: fixed;
@@ -229,4 +225,19 @@ table {
 #overlay.active {
     opacity: 1;
     pointer-events: all;
+}
+
+#btnUpdateAd {
+    /*margin: auto;
+    position: fixed;*/
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+.display-none {
+    display: none;
 }

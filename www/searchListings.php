@@ -49,27 +49,46 @@ session_start();
 </nav>
 
 
+
 <table class="table">
     <thead>
     <tr>
         <th scope="col">Image</th>
         <th scope="col">Produkt na predaj</th>
-        <th scope="col">Cena (€)</th>
+        <th scope="col">Cena</th>
     </tr>
     </thead>
     <tbody>
     <?php foreach ($storage->readAllAds("kategoria", $_SESSION["category"]) as $row) {?>
         <tr>
             <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
-            <td class="popisInOutput"><div><b><?php echo $row["title"]?></b></div>
+            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $storage->readImage($row["id"]);?>')"><?php echo $row["title"]?></a></b></div>
                 <div><?php echo $row["popis"]?></div></td>
-            <td class="priceInOutput"><?php echo $row["cena"]?></td>
+            <td class="priceInOutput"><?php echo $row["cena"]?> €</td>
         </tr>
     <?php }?>
 
     </tbody>
 </table>
+<div class="model" id="model">
+
+    <div class="model-header">
+        <div class="title" id="title"></div>
+        <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="model-body">
+        <b><div id="kategoria"></div></b>
+        <div><img id="image" src="" width='100%'></div>
+        <br>
+        <div id="popis"></div>
+        <br>
+        <div id="price"></div>
+        <div>Kontaktný email: <a id="usrEmail" href=""></a></div>
+    </div>
+</div>
+<div id="overlay"></div>
 
 <script src="js/bootstrap.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

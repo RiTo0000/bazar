@@ -47,9 +47,24 @@ function closeModal(modal) {
 function setModal(title, category, popis, userEmail, price, image) {
     document.getElementById("title").innerHTML = title;
     document.getElementById("kategoria").innerHTML = category;
+    if (image.localeCompare("") == 0) {
+        document.getElementById("image").style.display = "none";
+    }
+    else {
+        document.getElementById("image").style.display = "block";
+        document.getElementById("image").src = image;
+    }
     document.getElementById("image").src = image;
     document.getElementById("popis").innerHTML = popis;
     document.getElementById("usrEmail").innerHTML = userEmail;
-    document.getElementById("price").innerHTML = price;
+    document.getElementById("usrEmail").href = "mailto:" + userEmail;
+    document.getElementById("price").innerHTML = "Cena: " + price;
+}
+function edit(id, title, popis, price) {
+    document.getElementById("idUpdate").setAttribute('value', parseInt(id));
+    document.getElementById("titleUpdate").innerHTML = "Uprava inzeratu: " + title;
+    document.getElementById("nadpisUpdate").setAttribute('value', title);
+    document.getElementById("popisUpdate").innerHTML = popis;
+    document.getElementById("cenaUpdate").setAttribute('value', parseFloat(price));
 }
 

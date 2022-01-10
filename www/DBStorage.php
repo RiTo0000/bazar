@@ -136,8 +136,8 @@ class DBStorage
 
     }
 
-    public function updateAd($id, $email) {
-        $sql = "UPDATE inzeraty SET email = '".$email."' where id = '".$id."'";
+    public function updateAd($id, $title, $popis, $cena) {
+        $sql = "UPDATE inzeraty SET title = '".$title."', popis = '".$popis."', cena = '".$cena."' where id = '".$id."'";
 
         $res = $this->conn->prepare($sql);
         $res->execute();
