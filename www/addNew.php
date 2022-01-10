@@ -116,7 +116,8 @@ session_start();
 <?php
 if(isset($_POST["addNewAd"])) {
     $myFile = $_FILES['image'];
-    if (count($myFile["name"]) > 5) {
+    $fileCount = count(array_filter($myFile["name"]));
+    if ($fileCount > 5) { //pise ze pridas jeden file aj ked je to prazdne
         ?>
         <script>
             showAlert("Pozor mozes nahrat max 5 obrazkov");
@@ -125,7 +126,7 @@ if(isset($_POST["addNewAd"])) {
         <?php
     }
     else {
-        if (!$storage->createAd($_POST["email"], $_POST["nadpis"], $_POST["popis"], $_POST["kategoria"], $_POST["cena"])) {
+        if (!$storage->createAd($_POST["email"], $_POST["nadpis"], $_POST["popis"], $_POST["kategoria"], $_POST["cena"], $fileCount)) {
             ?>
             <script>
                 showAlert("Uzivatel so zadanou emailovou adresou neexistuje");
@@ -141,8 +142,6 @@ if(isset($_POST["addNewAd"])) {
             $var3 = md5($var3);   // convert $var3 using md5 function and generate 32 characters hex number*/
 
             if (isset($_FILES['image'])) {
-                $fileCount = count($myFile["name"]);
-
                 for ($i = 0; $i < $fileCount; $i++) {
                     $var1 = rand(1111,9999);  // generate random number in $var1 variable
                     $var2 = rand(1111,9999);  // generate random number in $var2 variable

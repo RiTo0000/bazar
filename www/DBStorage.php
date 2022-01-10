@@ -88,7 +88,7 @@ class DBStorage
         return true;
     }
 
-    public function createAd($email, $title, $popis, $kategoria, $cena) {
+    public function createAd($email, $title, $popis, $kategoria, $cena, $pocetFoto) {
         $sql = "SELECT * FROM users where email = '".$email."'";
 
         $res = $this->conn->query($sql);
@@ -100,7 +100,7 @@ class DBStorage
         }
 
         if ($count == 1) {
-            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "')";
+            $sql = "INSERT INTO inzeraty VALUES(NULL , '".$title. "', '" . $popis. "', '" . $kategoria. "', '" . $cena. "', '" . $email. "', '" . $pocetFoto. "')";
             $res = $this->conn->prepare($sql);
             $res->execute();
             return true;
