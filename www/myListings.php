@@ -100,27 +100,27 @@ if(isset($_POST["updateAd"])) {
         <?php
         if ($row["pocetObrazkov"]== 0) {
             ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>')"><?php echo $row["title"]?></a></b></div>
+            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '', '', '', '', '')"><?php echo $row["title"]?></a></b></div>
             <?php
         }
         else if ($row["pocetObrazkov"] == 1) {
             ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>')"><?php echo $row["title"]?></a></b></div>
+            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '', '', '', '')"><?php echo $row["title"]?></a></b></div>
             <?php
         }
         else if ($row["pocetObrazkov"] == 2) {
             ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>')"><?php echo $row["title"]?></a></b></div>
+            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '', '', '')"><?php echo $row["title"]?></a></b></div>
             <?php
         }
         else if ($row["pocetObrazkov"] == 3) {
             ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>')"><?php echo $row["title"]?></a></b></div>
+            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>', '', '')"><?php echo $row["title"]?></a></b></div>
             <?php
         }
         else if ($row["pocetObrazkov"] == 4) {
             ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[3]["imgPath"];?>')"><?php echo $row["title"]?></a></b></div>
+            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[3]["imgPath"];?>', '')"><?php echo $row["title"]?></a></b></div>
             <?php
         }
         else if ($row["pocetObrazkov"] == 5) {
@@ -147,32 +147,32 @@ if(isset($_POST["updateAd"])) {
     <div class="model-body">
         <b><div id="kategoria"></div></b>
         <!--zaciatok obrazkovej galerie-->
-        <div class="container">
+        <div class="container" id="imageGalery">
 
             <!-- Full-width images with number text -->
             <div class="mySlides">
                 <div class="numbertext">1 / 5</div>
-                <img id="image1" src="img_woods_wide.jpg" style="width:100%">
+                <img class="image1" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">2 / 5</div>
-                <img id="image2" src="img_5terre_wide.jpg" style="width:100%">
+                <img class="image2" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">3 / 5</div>
-                <img id="image3" src="img_mountains_wide.jpg" style="width:100%">
+                <img class="image3" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">4 / 5</div>
-                <img id="image4" src="img_lights_wide.jpg" style="width:100%">
+                <img class="image4" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">5 / 5</div>
-                <img id="image5" src="img_nature_wide.jpg" style="width:100%">
+                <img class="image5" src="" style="width:100%">
             </div>
 
 
@@ -180,32 +180,27 @@ if(isset($_POST["updateAd"])) {
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-            <!-- Image text -->
-            <div class="caption-container">
-                <p id="caption"></p>
-            </div>
 
             <!-- Thumbnail images -->
             <div class="row">
                 <div class="column">
-                    <img class="demo cursor" id="image1" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                    <img class="demo cursor image1" src="" style="width:100%" onclick="currentSlide(1)">
                 </div>
                 <div class="column">
-                    <img class="demo cursor" src="img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+                    <img class="demo cursor image2" src="" style="width:100%" onclick="currentSlide(2)">
                 </div>
                 <div class="column">
-                    <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+                    <img class="demo cursor image3" src="" style="width:100%" onclick="currentSlide(3)">
                 </div>
                 <div class="column">
-                    <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+                    <img class="demo cursor image4" src="" style="width:100%" onclick="currentSlide(4)">
                 </div>
                 <div class="column">
-                    <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+                    <img class="demo cursor image5" src="" style="width:100%" onclick="currentSlide(5)">
                 </div>
             </div>
         </div>
         <!--koniec obrazkovej galerie-->
-        <!--<div><img id="image" src="" width='100%'></div>-->
         <br>
         <div id="popis"></div>
         <br>

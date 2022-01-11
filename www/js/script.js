@@ -45,23 +45,22 @@ function closeModal(modal) {
 
 
 function setModal(title, category, popis, userEmail, price, numImages, image1, image2, image3, image4, image5) {
-
+    setSlides(numImages);
     document.getElementById("title").innerHTML = title;
     document.getElementById("kategoria").innerHTML = category;
-    if (numImages > 4) {
-        document.getElementById("image5").src = image5;
-    }
-    if (numImages > 3) {
-        document.getElementById("image4").src = image4;
-    }
-    if (numImages > 2) {
-        document.getElementById("image3").src = image3;
-    }
-    if (numImages > 1) {
-        document.getElementById("image2").src = image2;
-    }
+    document.getElementById("imageGalery").style.display = "none";
     if (numImages > 0) {
-        document.getElementById("image1").src = image1;
+        document.getElementById("imageGalery").style.display = "block";
+        document.getElementsByClassName("image1")[0].src = image1;
+        document.getElementsByClassName("image1")[1].src = image1;
+        document.getElementsByClassName("image2")[0].src = image2;
+        document.getElementsByClassName("image2")[1].src = image2;
+        document.getElementsByClassName("image3")[0].src = image3;
+        document.getElementsByClassName("image3")[1].src = image3;
+        document.getElementsByClassName("image4")[0].src = image4;
+        document.getElementsByClassName("image4")[1].src = image4;
+        document.getElementsByClassName("image5")[0].src = image5;
+        document.getElementsByClassName("image5")[1].src = image5;
     }
     document.getElementById("popis").innerHTML = popis;
     document.getElementById("usrEmail").innerHTML = userEmail;
@@ -78,14 +77,19 @@ function edit(id, title, popis, price) {
 
 //obrazkova galeria
 var slideIndex = 1;
-showSlides(slideIndex);
+var numImages = 0;
+function setSlides(pNumImages) {
+    slideIndex = 1;
+    numImages = pNumImages;
+    showSlides(slideIndex);
+}
 
-// Next/previous controls
+// sipky kontrola dalsi predchadzajuci
 function plusSlides(n) {
     showSlides(slideIndex += n);
 }
 
-// Thumbnail image controls
+// male obrazky dole kontrola
 function currentSlide(n) {
     showSlides(slideIndex = n);
 }
@@ -94,16 +98,22 @@ function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("demo");
+/*
     var captionText = document.getElementById("caption");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
+*/
+    if (n > numImages) {slideIndex = 1}
+    if (n < 1) {slideIndex = parseInt(numImages)}
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
+        dots[i].style.display = "block";
+    }
+    for (i = numImages; i < dots.length; i++) {
+        dots[i].style.display = "none";
     }
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
-    captionText.innerHTML = dots[slideIndex-1].alt;
+    /*captionText.innerHTML = dots[slideIndex-1].alt;*/
 }
