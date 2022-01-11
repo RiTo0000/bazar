@@ -172,7 +172,15 @@ if(isset($_POST["login"])) {
 
 if(isset($_POST["registerNewUser"])) {
     if ($_POST["password"] == $_POST["password2"]) {
-        if (!$storage->createUser($_POST["email"], $_POST["password"], $_POST["meno"], $_POST["priezvisko"])) {
+        //hashovanie hesla a pridavanie salt
+        try {
+            $salt = bin2hex(random_bytes(10));
+        } catch (Exception $e) {
+        }
+
+        $password = $storage->hashPassword($salt, $_POST["password"]);
+
+        if (!$storage->createUser($_POST["email"], $password, $_POST["meno"], $_POST["priezvisko"], $salt)) {
             ?>
             <script>
                 showAlert("Registrácia nového používateľa sa nepodarila, konto so zadaným emailom už existuje skúste sa prihlásiť");
