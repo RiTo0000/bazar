@@ -79,8 +79,22 @@ function edit(id, title, popis, price) {
 var slideIndex = 1;
 var numImages = 0;
 function setSlides(pNumImages) {
+    var i;
+    var dots = document.getElementsByClassName("demo");
     slideIndex = 1;
     numImages = pNumImages;
+    if (numImages < 2) {
+        document.getElementsByClassName("arrow")[0].style.display = "none";
+        document.getElementsByClassName("arrow")[1].style.display = "none";
+    }
+    else {
+        document.getElementsByClassName("arrow")[0].style.display = "block";
+        document.getElementsByClassName("arrow")[1].style.display = "block";
+    }
+    for (i = 0; i < dots.length; i++) {
+        if (i < numImages) {dots[i].style.display = "block";}
+        else {dots[i].style.display = "none";}
+    }
     showSlides(slideIndex);
 }
 
@@ -98,9 +112,6 @@ function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("demo");
-/*
-    var captionText = document.getElementById("caption");
-*/
     if (n > numImages) {slideIndex = 1}
     if (n < 1) {slideIndex = parseInt(numImages)}
     for (i = 0; i < slides.length; i++) {
@@ -108,12 +119,7 @@ function showSlides(n) {
     }
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
-        dots[i].style.display = "block";
-    }
-    for (i = numImages; i < dots.length; i++) {
-        dots[i].style.display = "none";
     }
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
-    /*captionText.innerHTML = dots[slideIndex-1].alt;*/
 }

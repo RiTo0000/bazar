@@ -151,34 +151,29 @@ if(isset($_POST["updateAd"])) {
 
             <!-- Full-width images with number text -->
             <div class="mySlides">
-                <div class="numbertext">1 / 5</div>
                 <img class="image1" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
-                <div class="numbertext">2 / 5</div>
                 <img class="image2" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
-                <div class="numbertext">3 / 5</div>
                 <img class="image3" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
-                <div class="numbertext">4 / 5</div>
                 <img class="image4" src="" style="width:100%">
             </div>
 
             <div class="mySlides">
-                <div class="numbertext">5 / 5</div>
                 <img class="image5" src="" style="width:100%">
             </div>
 
 
             <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <a class="prev arrow" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next arrow" onclick="plusSlides(1)">&#10095;</a>
 
 
             <!-- Thumbnail images -->
