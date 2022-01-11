@@ -61,38 +61,8 @@ session_start();
     <?php foreach ($storage->readAllAds("kategoria", $_SESSION["category"]) as $row) {?>
         <tr>
             <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
-            <?php
-            if ($row["pocetObrazkov"]== 0) {
-            ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '', '', '', '', '')"><?php echo $row["title"]?></a></b></div>
-                <?php
-                }
-                else if ($row["pocetObrazkov"] == 1) {
-                ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '', '', '', '')"><?php echo $row["title"]?></a></b></div>
-                <?php
-                }
-                else if ($row["pocetObrazkov"] == 2) {
-                ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '', '', '')"><?php echo $row["title"]?></a></b></div>
-                <?php
-                }
-                else if ($row["pocetObrazkov"] == 3) {
-                ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>', '', '')"><?php echo $row["title"]?></a></b></div>
-                <?php
-                }
-                else if ($row["pocetObrazkov"] == 4) {
-                ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[3]["imgPath"];?>', '')"><?php echo $row["title"]?></a></b></div>
-                <?php
-                }
-                else if ($row["pocetObrazkov"] == 5) {
-                ?>
-            <td class="popisInOutput"><div><b><a data-modal-target="#model" onclick="setModal('<?php echo $row["title"]?>', '<?php echo $row["kategoria"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["userEmail"]?>', '<?php echo $row["cena"]?> €', '<?php echo $row["pocetObrazkov"]?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[0]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[1]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[2]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[3]["imgPath"];?>', '<?php echo $storage->readAllImages($row["id"])->fetchAll()[4]["imgPath"];?>')"><?php echo $row["title"]?></a></b></div>
-                <?php
-                }
-                ?>
+
+            <?php include "gallery.php"; ?>
 
                 <div><?php echo $row["popis"]?></div></td>
             <td class="priceInOutput"><?php echo $row["cena"]?> €</td>
