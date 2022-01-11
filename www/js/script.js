@@ -123,3 +123,31 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
 }
+/*
+
+function loadAdNew() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById("demo").innerHTML = this.response;
+    }
+    xhttp.open("GET", "addNew.php");
+    xhttp.send();
+}
+
+function loadMyListings() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById("demo").innerHTML = this.response;
+    }
+    xhttp.open("GET", "myListings.php");
+    xhttp.send();
+}
+
+function loadLogin() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById("demo").innerHTML = this.response;
+    }
+    xhttp.open("GET", "login.php");
+    xhttp.send();
+}*/
