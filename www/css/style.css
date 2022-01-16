@@ -315,3 +315,8 @@ table {
 .demo:hover {
     opacity: 1;
 }
+ #search {
+     width: 85%;
+     margin: auto;
+     margin-top: 10px;
+ }

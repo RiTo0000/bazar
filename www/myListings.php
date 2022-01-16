@@ -109,6 +109,8 @@ if(isset($_POST["updateAd"])) {
 
         </tbody>
     </table>
+
+
     <div class="model" id="model">
         <div class="model-header">
             <div class="title" id="title"></div>
@@ -119,7 +121,7 @@ if(isset($_POST["updateAd"])) {
             <!--zaciatok obrazkovej galerie-->
             <div class="container" id="imageGalery">
 
-                <!-- Full-width images with number text -->
+                <!-- velke obrazky -->
                 <div class="mySlides">
                     <img class="image1" src="" style="width:100%">
                 </div>
@@ -141,12 +143,12 @@ if(isset($_POST["updateAd"])) {
                 </div>
 
 
-                <!-- Next and previous buttons -->
+                <!-- tlacidla dalsi a predchadzajuci -->
                 <a class="prev arrow" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next arrow" onclick="plusSlides(1)">&#10095;</a>
 
 
-                <!-- Thumbnail images -->
+                <!-- male obrazky -->
                 <div class="row">
                     <div class="column">
                         <img class="demo cursor image1" src="" style="width:100%" onclick="currentSlide(1)">
@@ -214,6 +216,8 @@ if(isset($_POST["updateAd"])) {
     <div id="overlay"></div>
 <?php }?>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/script.js"></script>
 </body>

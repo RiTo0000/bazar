@@ -48,6 +48,7 @@ session_start();
     </div>
 </nav>
 
+<input type="text" class="form-control" id="search" onkeyup="filter()">
 
 <table class="table">
     <thead>
@@ -59,7 +60,7 @@ session_start();
     </thead>
     <tbody>
     <?php foreach ($storage->readAllAds("kategoria", $_SESSION["category"]) as $row) {?>
-        <tr>
+        <tr class="tableRows">
             <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
 
             <?php include "gallery.php"; ?>

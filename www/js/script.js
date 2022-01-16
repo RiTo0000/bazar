@@ -123,31 +123,36 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
 }
-/*
 
-function loadAdNew() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        document.getElementById("demo").innerHTML = this.response;
-    }
-    xhttp.open("GET", "addNew.php");
-    xhttp.send();
+var pageNumber = 1;
+
+function toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 
-function loadMyListings() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        document.getElementById("demo").innerHTML = this.response;
+function filter() {
+    var tableRows = document.getElementsByClassName("tableRows");
+    var input;
+    var str1;
+    var str2;
+    var search;
+    for (let i = 0; i < tableRows.length; i++) {
+        input = tableRows[i].cells.item(1).innerHTML;
+        str1 = input.substring(input.indexOf("('")+2, input.indexOf("',"));
+        str2 = input.substring(input.indexOf("',", input.indexOf("',") + 1) + 4, input.indexOf("',", input.indexOf("',", input.indexOf("',") + 1) + 1));
+        search = str1 + ' ' + str2;
+
+        if (search.includes(document.getElementById("search").value)) {
+            tableRows[i].style.visibility = "initial";
+            tableRows[i].style.lineHeight = "initial";
+        }
+        else {
+            tableRows[i].style.visibility = "hidden";
+            tableRows[i].style.visibility = "collapse";
+            tableRows[i].style.lineHeight = "0";
+        }
     }
-    xhttp.open("GET", "myListings.php");
-    xhttp.send();
+
 }
 
-function loadLogin() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        document.getElementById("demo").innerHTML = this.response;
-    }
-    xhttp.open("GET", "login.php");
-    xhttp.send();
-}*/
