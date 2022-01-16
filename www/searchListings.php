@@ -48,7 +48,21 @@ session_start();
     </div>
 </nav>
 
-<input type="text" class="form-control" id="search" onkeyup="filter()">
+<!--filter-->
+<div id="filter">
+    <div class="filter">
+        <label class="col-sm-2 col-form-label filterLabel">Hľadaný výraz: </label>
+        <input type="text" class="form-control" id="search" onkeyup="filter()">
+    </div>
+    <div class="filter">
+        <label class="col-sm-2 col-form-label filterLabel">Cena od: </label>
+        <input type="number" min="0" step="0.01" class="form-control" id="priceFrom" onkeyup="filter()">
+    </div>
+    <div class="filter">
+        <label class="col-sm-2 col-form-label filterLabel">Cena do: </label>
+        <input type="number" class="form-control" id="priceTo" onkeyup="filter()">
+    </div>
+</div>
 
 <table class="table">
     <thead>
@@ -60,8 +74,13 @@ session_start();
     </thead>
     <tbody>
     <?php foreach ($storage->readAllAds("kategoria", $_SESSION["category"]) as $row) {?>
+        <style>
+            #noListings {
+                display: none;
+            }
+        </style>
         <tr class="tableRows">
-            <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
+            <td><img class="imagePrew" src="<?php echo $storage->readImage($row["id"]);?>" ></td>
 
             <?php include "gallery.php"; ?>
 
@@ -72,6 +91,9 @@ session_start();
 
     </tbody>
 </table>
+
+<b><p id="noListings">Ľutujeme, žiadne inzeráty na zobrazenie</p></b>
+
 <div class="model" id="model">
     <div class="model-header">
         <div class="title" id="title"></div>

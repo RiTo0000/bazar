@@ -124,32 +124,73 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
 }
 
-var pageNumber = 1;
-
-function toTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
 function filter() {
     var tableRows = document.getElementsByClassName("tableRows");
     var input;
     var str1;
     var str2;
     var search;
+    var count = 0;
     for (let i = 0; i < tableRows.length; i++) {
         input = tableRows[i].cells.item(1).innerHTML;
         str1 = input.substring(input.indexOf("('")+2, input.indexOf("',"));
         str2 = input.substring(input.indexOf("',", input.indexOf("',") + 1) + 4, input.indexOf("',", input.indexOf("',", input.indexOf("',") + 1) + 1));
         search = str1 + ' ' + str2;
 
-        if (search.includes(document.getElementById("search").value)) {
-            tableRows[i].removeAttribute("hidden");
+        if (search.toLowerCase().includes(((document.getElementById("search").value).toLowerCase()).trim())) {
+            if (filterPrice(tableRows[i].cells.item(2).innerHTML)) {
+                tableRows[i].removeAttribute("hidden");
+                count++;
+            }
+            else {
+                tableRows[i].setAttribute("hidden", "hidden");
+            }
         }
         else {
             tableRows[i].setAttribute("hidden", "hidden");
         }
     }
+    if (count === 0) {
+        document.getElementById("noListings").style.display = "initial";
+    }
+    else {
+        document.getElementById("noListings").style.display = "none";
+    }
 
 }
+
+function filterPrice(pPrice) { //return true ked ma byt zobrazeny a false ak ma byt schovany
+    var price;
+    price = pPrice.substring(0, pPrice.indexOf("€"));
+
+    if (document.getElementById("priceFrom").value.trim().length === 0 && document.getElementById("priceTo").value.trim().length === 0) {
+        return true;
+    }
+    else if (document.getElementById("priceFrom").value.trim().length === 0) {
+        if (parseFloat(price) <= document.getElementById("priceTo").value) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else if (document.getElementById("priceTo").value.trim().length === 0) {
+        if (parseFloat(price) >= document.getElementById("priceFrom").value) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        if (parseFloat(price) >= document.getElementById("priceFrom").value && parseFloat(price) <= document.getElementById("priceTo").value) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+
 

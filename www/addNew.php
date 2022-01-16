@@ -106,7 +106,7 @@ session_start();
         <div class="row mb-3">
             <label for="image" class="col-sm-2 col-form-label">Nahraj fotky (max. 5ks)</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="image" name="image[]" value="" multiple>
+                <input type="file" class="form-control" id="image" name="image[]" value="" multiple accept="image/*">
             </div>
         </div>
         <button type="submit" id="btnAddNewAd" class="btn btn-primary" name="addNewAd">Pridať inzerát</button>

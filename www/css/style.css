@@ -53,6 +53,7 @@ label {
 #updateInfoForm {
     width: 80%;
     margin: auto;
+    margin-top: 60px;
 }
 
 #btnUpdateInfo {
@@ -74,7 +75,8 @@ label {
 
 #btnLogout {
     margin: 10px;
-    margin-left: 95%;
+    /*margin-left: 95%;*/
+    float: right;
 
     color: black;
     background-color: #F5B60C;
@@ -315,8 +317,31 @@ table {
 .demo:hover {
     opacity: 1;
 }
- #search {
-     width: 85%;
-     margin: auto;
-     margin-top: 10px;
+
+ .filterLabel {
+     width: 180px;
  }
+
+ .filter {
+     margin-left: 2%;
+     display: inline-block;
+     width: 20%;
+ }
+
+
+.tableRows {
+    max-height: 100px;
+    max-width: 80%;
+}
+
+.imagePrew {
+    display: block;
+    max-width:150px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+}
+
+#noListings {
+    margin-left: 10%;
+}

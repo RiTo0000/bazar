@@ -95,8 +95,8 @@ if(isset($_POST["updateAd"])) {
         </thead>
         <tbody>
         <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
-            <tr>
-                <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
+            <tr class="tableRows">
+                <td><img class="imagePrew" src="<?php echo $storage->readImage($row["id"]);?>" ></td>
 
                 <?php include 'gallery.php'?>
 
