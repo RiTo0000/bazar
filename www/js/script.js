@@ -144,13 +144,10 @@ function filter() {
         search = str1 + ' ' + str2;
 
         if (search.includes(document.getElementById("search").value)) {
-            tableRows[i].style.visibility = "initial";
-            tableRows[i].style.lineHeight = "initial";
+            tableRows[i].removeAttribute("hidden");
         }
         else {
-            tableRows[i].style.visibility = "hidden";
-            tableRows[i].style.visibility = "collapse";
-            tableRows[i].style.lineHeight = "0";
+            tableRows[i].setAttribute("hidden", "hidden");
         }
     }
 
