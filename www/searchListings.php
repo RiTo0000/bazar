@@ -64,7 +64,7 @@ session_start();
 
             <?php include "gallery.php"; ?>
 
-                <div><?php echo $row["popis"]?></div></td>
+            <div><?php echo $row["popis"]?></div></td>
             <td class="priceInOutput"><?php echo $row["cena"]?> €</td>
         </tr>
     <?php }?>

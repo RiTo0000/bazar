@@ -75,143 +75,143 @@ if(isset($_POST["updateAd"])) {
 
 
 <?php if (!Auth::isLogged()) {?>
-<div id="noListings">
-    <h1><i class="fas fa-exclamation-circle"></i> Pozor nie ste prihláseny</h1>
-    <p>Pre zobrazenie vašich inzerátov sa najprv prosím prihláste</p>
-</div>
+    <div id="noListings">
+        <h1><i class="fas fa-exclamation-circle"></i> Pozor nie ste prihláseny</h1>
+        <p>Pre zobrazenie vašich inzerátov sa najprv prosím prihláste</p>
+    </div>
 
 <?php } else {?>
-<h1>Vaše inzeráty</h1>
+    <h1>Vaše inzeráty</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Produkt na predaj</th>
-        <th scope="col">Cena</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
-    <tr>
-        <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Produkt na predaj</th>
+            <th scope="col">Cena</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
+            <tr>
+                <td><img src="<?php echo $storage->readImage($row["id"]);?>" width='150'></td>
 
-        <?php include 'gallery.php'?>
+                <?php include 'gallery.php'?>
 
-            <div><?php echo $row["popis"]?></div></td>
-        <td class="priceInOutput"><?php echo $row["cena"]?> €</td>
-        <td class="trashInOutput"><a data-modal-target="#model2" onclick="edit('<?php echo $row["id"]?>', '<?php echo $row["title"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["cena"]?>')"><i class="fas fa-edit"></i></a></td>
-        <td class="trashInOutput"><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
-    </tr>
-    <?php }?>
+                <div><?php echo $row["popis"]?></div></td>
+                <td class="priceInOutput"><?php echo $row["cena"]?> €</td>
+                <td class="trashInOutput"><a data-modal-target="#model2" onclick="edit('<?php echo $row["id"]?>', '<?php echo $row["title"]?>', '<?php echo $row["popis"]?>', '<?php echo $row["cena"]?>')"><i class="fas fa-edit"></i></a></td>
+                <td class="trashInOutput"><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
+            </tr>
+        <?php }?>
 
-    </tbody>
-</table>
-<div class="model" id="model">
-    <div class="model-header">
-        <div class="title" id="title"></div>
-        <button data-close-button class="close-button">&times;</button>
-    </div>
-    <div class="model-body">
-        <b><div id="kategoria"></div></b>
-        <!--zaciatok obrazkovej galerie-->
-        <div class="container" id="imageGalery">
-
-            <!-- Full-width images with number text -->
-            <div class="mySlides">
-                <img class="image1" src="" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img class="image2" src="" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img class="image3" src="" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img class="image4" src="" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img class="image5" src="" style="width:100%">
-            </div>
-
-
-            <!-- Next and previous buttons -->
-            <a class="prev arrow" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next arrow" onclick="plusSlides(1)">&#10095;</a>
-
-
-            <!-- Thumbnail images -->
-            <div class="row">
-                <div class="column">
-                    <img class="demo cursor image1" src="" style="width:100%" onclick="currentSlide(1)">
-                </div>
-                <div class="column">
-                    <img class="demo cursor image2" src="" style="width:100%" onclick="currentSlide(2)">
-                </div>
-                <div class="column">
-                    <img class="demo cursor image3" src="" style="width:100%" onclick="currentSlide(3)">
-                </div>
-                <div class="column">
-                    <img class="demo cursor image4" src="" style="width:100%" onclick="currentSlide(4)">
-                </div>
-                <div class="column">
-                    <img class="demo cursor image5" src="" style="width:100%" onclick="currentSlide(5)">
-                </div>
-            </div>
+        </tbody>
+    </table>
+    <div class="model" id="model">
+        <div class="model-header">
+            <div class="title" id="title"></div>
+            <button data-close-button class="close-button">&times;</button>
         </div>
-        <!--koniec obrazkovej galerie-->
-        <br>
-        <div id="popis"></div>
-        <br>
-        <div id="price"></div>
-        <div>Kontaktný email: <a id="usrEmail" href=""></a></div>
-    </div>
-</div>
-<!--zaciatok upravy-->
-<div class="model" id="model2">
-    <div class="model-header">
-        <div class="title" id="titleUpdate"></div>
-        <button data-close-button class="close-button">&times;</button>
-    </div>
-    <div class="model-body">
-        <div id="updateAdForm">
-            <form onsubmit="return chechk();" enctype="multipart/form-data" id="addListingForm" method="post">
-                <div class="row mb-3 display-none">
-                    <label for="idUpdate" class="col-sm-2 col-form-label">ID</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" id="idUpdate" name="idUpdate" required="required">
+        <div class="model-body">
+            <b><div id="kategoria"></div></b>
+            <!--zaciatok obrazkovej galerie-->
+            <div class="container" id="imageGalery">
+
+                <!-- Full-width images with number text -->
+                <div class="mySlides">
+                    <img class="image1" src="" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+                    <img class="image2" src="" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+                    <img class="image3" src="" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+                    <img class="image4" src="" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+                    <img class="image5" src="" style="width:100%">
+                </div>
+
+
+                <!-- Next and previous buttons -->
+                <a class="prev arrow" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next arrow" onclick="plusSlides(1)">&#10095;</a>
+
+
+                <!-- Thumbnail images -->
+                <div class="row">
+                    <div class="column">
+                        <img class="demo cursor image1" src="" style="width:100%" onclick="currentSlide(1)">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor image2" src="" style="width:100%" onclick="currentSlide(2)">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor image3" src="" style="width:100%" onclick="currentSlide(3)">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor image4" src="" style="width:100%" onclick="currentSlide(4)">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor image5" src="" style="width:100%" onclick="currentSlide(5)">
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="nadpis" class="col-sm-2 col-form-label">Nadpis</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nadpisUpdate" name="nadpisUpdate" required="required">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="popis" class="col-sm-2 col-form-label">Popis produktu</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" id="popisUpdate" name="popisUpdate" required="required" maxlength="500"></textarea>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="cena" class="col-sm-2 col-form-label">Cena (€)</label>
-                    <div class="col-sm-10">
-                        <input type="number" min="0" step="0.01" class="form-control" id="cenaUpdate" name="cenaUpdate" required="required">
-                    </div>
-                </div>
-                <button type="submit" id="btnUpdateAd" class="btn btn-primary" name="updateAd">Upraviť inzerát</button>
-            </form>
+            </div>
+            <!--koniec obrazkovej galerie-->
+            <br>
+            <div id="popis"></div>
+            <br>
+            <div id="price"></div>
+            <div>Kontaktný email: <a id="usrEmail" href=""></a></div>
         </div>
     </div>
-</div>
-<div id="overlay"></div>
+    <!--zaciatok upravy-->
+    <div class="model" id="model2">
+        <div class="model-header">
+            <div class="title" id="titleUpdate"></div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="model-body">
+            <div id="updateAdForm">
+                <form onsubmit="return chechk();" enctype="multipart/form-data" id="addListingForm" method="post">
+                    <div class="row mb-3 display-none">
+                        <label for="idUpdate" class="col-sm-2 col-form-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="idUpdate" name="idUpdate" required="required">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nadpis" class="col-sm-2 col-form-label">Nadpis</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nadpisUpdate" name="nadpisUpdate" required="required">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="popis" class="col-sm-2 col-form-label">Popis produktu</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="popisUpdate" name="popisUpdate" required="required" maxlength="500"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="cena" class="col-sm-2 col-form-label">Cena (€)</label>
+                        <div class="col-sm-10">
+                            <input type="number" min="0" step="0.01" class="form-control" id="cenaUpdate" name="cenaUpdate" required="required">
+                        </div>
+                    </div>
+                    <button type="submit" id="btnUpdateAd" class="btn btn-primary" name="updateAd">Upraviť inzerát</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="overlay"></div>
 <?php }?>
 
 <script src="js/bootstrap.js"></script>

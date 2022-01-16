@@ -20,22 +20,46 @@ class DBStorage
         }
     }
 
-    public function findUser($email, $password) {
-        $sql = "SELECT * FROM users where email = '".$email."' AND password = '".$password."'";
+    public function findUser($email, $pPassword) {
+        $sql = "SELECT * FROM users where email = '".$email."'";
 
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();
 
-        foreach($res as $row) {
+
+        $row = $res->fetchAll()[0];
+        $salt = $row["salt"];
+        $password = $this->hashPassword($salt, $pPassword);
+        if (strcmp($password, $row["password"]) == 0) {
             return true;
         }
-
-        return false;
-
+        else {
+            return false;
+        }
     }
 
-    public function updateUserInfo($origEmail, $email, $password, $name, $surname) {
+    public function hashPassword($salt, $password): string
+    {
+        $unhashed = $salt.$password;  // osoli heslo
+        return md5($unhashed);   // konvertuje cez md5
+    }
+
+    public function updateUserInfo($origEmail, $email, $pPassword, $name, $surname) {
+        $sql = "SELECT * FROM users where email = '".$origEmail."'";
+
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+
+        $row = $res->fetchAll()[0];
+        $password = $pPassword;
+        if (strcmp($pPassword, $row["password"]) != 0) {
+            $salt = $row["salt"];
+            $password = $this->hashPassword($salt, $pPassword);
+        }
+
+
         $sql = "UPDATE users SET email = '".$email."', password = '".$password."', meno = '".$name."', priezvisko = '".$surname."' where email = '".$origEmail."'";
 
         $res = $this->conn->prepare($sql);
@@ -70,7 +94,7 @@ class DBStorage
         }
     }
 
-    public function createUser($email, $password, $name, $surname) {
+    public function createUser($email, $password, $name, $surname, $salt) {
         $sql = "SELECT * FROM users where email = '".$email."'";
 
         $res = $this->conn->query($sql);
@@ -81,7 +105,7 @@ class DBStorage
             return false;
         }
 
-        $sql = "INSERT INTO users VALUES('".$email."', '".$password."', '".$name."', '".$surname."')";
+        $sql = "INSERT INTO users VALUES('".$email."', '".$password."', '".$name."', '".$surname."', '".$salt."')";
 
         $res = $this->conn->prepare($sql);
         $res->execute();
