@@ -398,6 +398,30 @@ table {
     width: 15%;
 }
 
-.comentText {
+#comentText {
     width: 80%;
+}
+
+#comentLabel {
+    width: 10%;
+    margin: auto;
+}
+
+@media only screen and (max-width: 900px) {
+    #comentLabel {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+    #comentTextDiv {
+        width: 100%;
+    }
+    #comentText {
+        width: 100%;
+        margin: auto;
+    }
+
+    #btnAddComent {
+        margin-top: 10px;
+    }
 }

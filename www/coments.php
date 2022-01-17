@@ -51,7 +51,7 @@ session_start();
 <div id="addComentForm">
     <form enctype="multipart/form-data" method="post">
         <div class="row mb-3">
-            <label for="comentText" class="col-sm-2 col-form-label" style="width: 10%; margin: auto">Vaša recenzia</label>
+            <label id="comentLabel" for="comentText" class="col-sm-2 col-form-label">Vaša recenzia</label>
             <div id="comentTextDiv" class="col-sm-10">
                 <textarea class="form-control" id="comentText" name="comentText" required="required" maxlength="500"></textarea>
             </div>
