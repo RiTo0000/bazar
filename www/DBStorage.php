@@ -28,7 +28,12 @@ class DBStorage
         $res->execute();
 
 
-        $row = $res->fetchAll()[0];
+        $rows = $res->fetchAll();
+        if ( $rows == null)
+        {
+            return false;
+        }
+        $row = $rows[0];
         $salt = $row["salt"];
         $password = $this->hashPassword($salt, $pPassword);
         if (strcmp($password, $row["password"]) == 0) {

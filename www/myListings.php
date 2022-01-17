@@ -95,6 +95,11 @@ if(isset($_POST["updateAd"])) {
         </thead>
         <tbody>
         <?php foreach ($storage->readAllAds("userEmail", $_SESSION["name"]) as $row) {?>
+            <style>
+                #noListings {
+                    display: none;
+                }
+            </style>
             <tr class="tableRows">
                 <td><img class="imagePrew" src="<?php echo $storage->readImage($row["id"]);?>" ></td>
 
@@ -110,6 +115,7 @@ if(isset($_POST["updateAd"])) {
         </tbody>
     </table>
 
+    <b><p id="noListings">Ľutujeme, žiadne inzeráty na zobrazenie</p></b>
 
     <div class="model" id="model">
         <div class="model-header">

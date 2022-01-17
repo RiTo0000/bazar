@@ -160,17 +160,15 @@ if (isset($_POST["deleteUser"])) {
 
 <?php
 if(isset($_POST["login"])) {
-    if (!$storage->findUser($_POST["login"], $_POST["password"])) { //toto vypise pri kazdom tvoreni uzivatela lebo ho vytvori hore
+    if (!$storage->findUser($_POST["login"], $_POST["password"])) {
         ?>
         <script>
             showAlert("Prihlásenie používateľa sa nepodarilo, zadali ste nesprávne prihlasovacie údaje");
-            notValidForm();
         </script>
         <?php
     }
 }
-
-if(isset($_POST["registerNewUser"])) {
+else if(isset($_POST["registerNewUser"])) {
     if ($_POST["password"] == $_POST["password2"]) {
         //hashovanie hesla a pridavanie salt
         try {
