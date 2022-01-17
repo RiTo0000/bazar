@@ -213,5 +213,28 @@ class DBStorage
         $res->execute();
 
     }
+
+    public function createComent($userFrom, $userTo, $text) {
+        $sql = "INSERT INTO coments VALUES(NULL , '".$userFrom. "', '" . $userTo. "', '" . $text. "')";
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+    }
+
+    public function readAllComents($userTo) {
+        $sql = "SELECT * FROM coments where userTo = '".$userTo."'";
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+
+        return $res;
+    }
+
+    public function deleteComent($id) {
+        $sql = "DELETE FROM coments where id = '".$id."'";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+
+    }
 }
 ?>

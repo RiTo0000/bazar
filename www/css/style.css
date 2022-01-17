@@ -342,6 +342,58 @@ table {
     height: auto;
 }
 
-#noListings {
+#noListings, #noComents {
     margin-left: 10%;
+}
+
+#mailAndComents {
+    width: 100%;
+    height: 38px;
+}
+#contactInfo {
+    width: 80%;
+    float: left;
+}
+
+#comentsBtn {
+    float: right;
+    margin-bottom: 25px;
+    margin-right: 0;
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+#noVisible {
+    display: none;
+}
+
+#addComentForm {
+    width: 90%;
+    margin: 10px auto;
+}
+#comentText {
+    width: 90%;
+}
+
+#addComentInput {
+    width: 70%;
+}
+
+#comentTextDiv {
+    width: 70%;
+}
+
+#btnAddComent {
+    float: right;
+    width: 160px;
+    height: 40px;
+    margin: auto;
+    color: black;
+    background-color: #F5B60C;
+    border-color: #F5B60C;
+}
+
+.userFrom {
+    width: 15%;
 }

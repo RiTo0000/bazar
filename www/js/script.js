@@ -65,6 +65,7 @@ function setModal(title, category, popis, userEmail, price, numImages, image1, i
     document.getElementById("popis").innerHTML = popis;
     document.getElementById("usrEmail").innerHTML = userEmail;
     document.getElementById("usrEmail").href = "mailto:" + userEmail;
+    document.getElementById("noVisible").value = userEmail;
     document.getElementById("price").innerHTML = "Cena: " + price;
 }
 function edit(id, title, popis, price) {
