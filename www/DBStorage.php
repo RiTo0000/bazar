@@ -85,13 +85,20 @@ class DBStorage
     }
 
     public function deleteUser($email) {
-        $sql = "DELETE FROM users where email = '".$email."'";
-        $res = $this->conn->prepare($sql);
-        $res->execute();
-
         foreach ($this->readAllAds("userEmail", $email) as $row) {
             $this->deleteAd($row["id"]);
         }
+
+        foreach ($this->readAllComents("userTo", $email) as $row) {
+            $this->deleteComent($row["id"]);
+        }
+
+        foreach ($this->readAllComents("userFrom", $email) as $row) {
+            $this->deleteComent($row["id"]);
+        }
+        $sql = "DELETE FROM users where email = '".$email."'";
+        $res = $this->conn->prepare($sql);
+        $res->execute();
     }
 
     public function createUser($email, $password, $name, $surname, $salt) {
@@ -220,8 +227,8 @@ class DBStorage
         $res->execute();
     }
 
-    public function readAllComents($userTo) {
-        $sql = "SELECT * FROM coments where userTo = '".$userTo."'";
+    public function readAllComents($colName, $colValue) {
+        $sql = "SELECT * FROM coments where $colName = '".$colValue."'";
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();

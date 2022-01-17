@@ -5,6 +5,13 @@ require "Auth.php";
 
 $storage = new DBStorage();
 session_start();
+
+
+if (isset($_POST["coments"])) {
+    $_SESSION["user"] = $_POST["userTo"];
+    header("Location: /coments.php");
+    exit();
+}
 ?>
 
 
@@ -155,16 +162,10 @@ session_start();
         <div id="popis"></div>
         <br>
         <div id="price"></div>
-        <div id="mailAndComents"><div id="contactInfo">Kontaktný email: <a id="usrEmail" href=""></a></div><form enctype="multipart/form-data" method="post"><input id="noVisible" name="userTo"><button type="submit" name="coments" id="comentsBtn" class="btn btn-primary"><a  href="coments.php">Recenzie používateľa</a></button></form></div>
+        <div id="mailAndComents"><div id="contactInfo">Kontaktný email: <a id="usrEmail" href=""></a></div><form enctype="multipart/form-data" method="post"><input id="noVisible" name="userTo"><button type="submit" name="coments" id="comentsBtn" class="btn btn-primary">Recenzie používateľa</button></form></div>
     </div>
 </div>
 <div id="overlay"></div>
-
-
-<?php
-if(isset($_POST["coments"])) {
-    $_SESSION["user"] = $_POST["userTo"];
-}?>
 
 <script src="js/bootstrap.js"></script>
 <script src="js/script.js"></script>

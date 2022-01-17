@@ -70,7 +70,7 @@ session_start();
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($storage->readAllComents($_SESSION["user"]) as $row) {?>
+    <?php foreach ($storage->readAllComents("userTo", $_SESSION["user"]) as $row) {?>
         <style>
             #noComents {
                 display: none;
@@ -78,7 +78,7 @@ session_start();
         </style>
         <tr class="tableRows">
             <td class="userFrom"><?php echo $row["userFrom"]?></td>
-            <td><?php echo $row["comentText"]?></td>
+            <td class="comentText"><?php echo $row["comentText"]?></td>
             <?php if (strcmp($row["userFrom"], $_SESSION["name"]) == 0) { ?>
                 <td class="trashInOutput"><a href="?delete=<?php echo $row["id"] ?>"><i class="fas fa-trash trashAd"></i></a></td>
             <?php } else {?>
